@@ -8,29 +8,17 @@ export default async function handler(req, res) {
         host: "sql12.freesqldatabase.com",
         port: "3306",
       });
-    if (req.method !== 'POST') {
-      return res.status(405).json({ error: 'Method Not Allowed' });
-    }
   
     try {
-      const {data} = req.body;
-      console.log(data)
+      const {name,address,city,state,contact,email} = req.body;
+      const insertQuery = 'INSERT INTO schools (name,address,city,state,contact,email) VALUES (name, address, city, state, contact, email)';
+      const [result] = await dbconnection.query(insertQuery, [name,address,city,state,contact,email]);
+      dbconnection.end()
+      res.status(200).json({data:result})
+      console.log(result)
   
-      if (!data) {
-        return res.status(400).json({ error: 'New data is required' });
-      }
-  
-      // Perform the insert operation in the database
-      const insertQuery = 'INSERT INTO schools (id, name, address, city, state, contact, email) VALUES (null, name, address, city, state, contact, email)';
-      const [result] = await dbconnection.execute(insertQuery, [data]);
-        dbconnection.end()
-        console.log(result)
-      // Return the ID of the newly inserted row (if needed)
-    
-  
-    //   res.status(200).json({ message: 'Insert successful', insertedId });
     } catch (error) {
       console.error('Error creating new data:', error.message);
-      res.status(500).json({ error: 'Internal Server Error' });
+      res.status(500).json({ error: error.message });
     }
   }
