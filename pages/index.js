@@ -20,6 +20,7 @@ export default function Home() {
       <main className={`${styles.main} ${inter.className}`}>
         <div className={styles.welcome}>
           <h3>Well Come to EdUnify</h3>
+          <h4>Choose The Best Future of Your Child with Us!</h4>
           <div className={styles.btnContainer}>
             <button>
               <Link className={styles.link} href="/schools">Schools</Link>
