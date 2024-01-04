@@ -1,0 +1,107 @@
+.cardContainer {
+    width: 100%;
+    display: grid;
+    grid-template-columns: .8fr .8fr .8fr .8fr;
+    gap: 1rem;
+}
+.card {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    background: #fff;
+    border: solid 1px gray;
+    border-radius: 10px;
+    height: auto;
+  }
+  .cardImg{
+   width: 100%;
+    height: 45%;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+  }
+  .name{
+    padding: 0 1rem;
+  }
+  .state{
+    color: darkgray;
+  }
+.apply{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    text-align: center;
+    background-color:lightseagreen;
+    height: 50px;
+    width: 100%;
+    margin-top: 2rem;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    margin-bottom: 0;
+    border: none;
+    cursor: pointer;
+
+}
+    
+  .schoolname {
+    color: #343434;
+    font-family: Roboto;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 150%;
+    letter-spacing: 0.96px;
+    text-transform: capitalize;
+  }
+  .ratingContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 2rem  1rem 0rem 1rem;
+  }
+  .schoolname, .prate, .star{
+      margin: 0.1rem .5rem;
+  }
+
+  .prate {
+    color: aqua;
+    font-family: Roboto;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 200%;
+    letter-spacing: 0.64px;
+    text-transform: capitalize;
+  }
+  .rating {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  @media (min-width:768px) and (max-width:968px) {
+    .cardContainer{
+        display: grid;
+        grid-template-columns: 0.8fr 0.8fr 0.8fr;
+        gap: 1rem;
+    }
+  }
+  @media (min-width:576px) and (max-width:768px) {
+    .cardContainer{
+        display: grid;
+        grid-template-columns: 0.8fr 0.8fr;
+        gap: 1rem;
+    }
+  }
+
+  @media (max-width:576px) {
+    .cardContainer{
+        display: grid;
+        grid-template-columns: 0.8fr;
+        gap: 1rem;
+        place-content: center;
+    }
+  }
