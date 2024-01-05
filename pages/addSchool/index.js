@@ -1,22 +1,14 @@
 import React from "react";
 import styles from "./AddSchool.module.css";
 import { useForm } from "react-hook-form";
-import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
-import { useState} from "react";
 
-const schema = yup.object().shape({
-  name: yup.string().required('Name is required'),
-  email: yup.string().email('Invalid email').required('Email is required'),
-});
+import { useState} from "react";
 const AddSchool = () => {
   const [isSubmitting,setIsSubmitting]=useState(false)
   const [database, setDatabase] = useState([]);
   const urlpost = "http://localhost:3000/api/createdata";
   const urlget = "http://localhost:3000/api/createdata";
-  const { register, handleSubmit, formState, } = useForm({
-    resolver: yupResolver(schema),
-  });
+  const { register, handleSubmit, formState, } = useForm();
   const onSubmit = async (data) => {
     if (isSubmitting) {
       return;
