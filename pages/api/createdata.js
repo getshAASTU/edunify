@@ -2,10 +2,10 @@ import mysql from "mysql2/promise";
 
 export default async function handler(req, res) {
     const dbconnection = await mysql.createConnection({
-        user: "sql12674486",
-        password: "2t7scnkhTM",
-        database: "sql12674486",
-        host: "sql12.freesqldatabase.com",
+        user: process.env.USER,
+        password: process.env.USER_PASSWORD,
+        database: process.env.NAME,
+        host: process.env.HOST,
         port: "3306",
       });
   
