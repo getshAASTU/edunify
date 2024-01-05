@@ -2,40 +2,30 @@ import React from "react";
 import styles from "./AddSchool.module.css";
 import { useForm } from "react-hook-form";
 
-import { useState} from "react";
+import { useState } from "react";
 const AddSchool = () => {
-  const [isSubmitting,setIsSubmitting]=useState(false)
-  const [database, setDatabase] = useState([]);
-  const urlpost = "http://localhost:3000/api/createdata";
-  const urlget = "http://localhost:3000/api/createdata";
-  const { register, handleSubmit, formState, } = useForm();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const urlpost = "http://localhost:3000/api/school";
+  const { register, handleSubmit, formState } = useForm();
   const onSubmit = async (data) => {
     if (isSubmitting) {
       return;
     }
-      try {
-        setIsSubmitting(true);
-        const response= await fetch(urlpost, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ data }),
-        });
-        if(response.ok){
-          console.log('Form submitted successfully!');
-        }
-        else{
-          console.error('Failed to submit form.');
-        }
-
-        const updatedResponse = await fetch(urlget);
-        const { data: updatedData } = await updatedResponse.json();
-        setDatabase(updatedData);
-        console.log(database);
-      } catch (error) {
-        console.error("Error creating new data:", error.message);
-      }
+    try {
+      setIsSubmitting(true);
+      const postData = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ data }),
+      };
+      const res = await fetch(urlpost, postData);
+      const response= await res.json();
+      console.log(response)
+    } catch (error) {
+      console.error("Error creating new data:", error.message);
+    }
   };
   return (
     <div className={styles.form}>

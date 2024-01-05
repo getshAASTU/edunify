@@ -4,12 +4,16 @@ import style from "./Shools.module.css";
 const Schools = () => {
   const [database, setDatabase] = useState([]);
   async function getData() {
-    const url = "http://localhost:3000/api/getdata";
-    const response = await fetch(url);
-    const res = await response.json();
-    console.log(res.result);
-    setDatabase(res.result);
-    console.log(database);
+    const url = "http://localhost:3000/api/school";
+    const postData={
+      method:'GET',
+      headers:{
+        'Content-Type':'application/json'
+      }
+    }
+    const res = await fetch(url,postData);
+    const response = await res.json();
+    setDatabase(response.schools);
   }
   useEffect(() => {
     getData();
