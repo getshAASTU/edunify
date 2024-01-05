@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@hookform/resolvers": "^3.3.4",
     "mysql2": "^3.6.5",
     "next": "14.0.4",
     "react": "^18",

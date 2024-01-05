@@ -1,12 +1,22 @@
 import React from "react";
 import styles from "./AddSchool.module.css";
 import { useForm } from "react-hook-form";
-
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react";
+
+const schema = yup
+  .object({
+    email: yup.string().email("Invalid email").required("Email is required"),
+  })
+  .required();
 const AddSchool = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const urlpost = "http://localhost:3000/api/school";
-  const { register, handleSubmit, formState } = useForm();
+  const { register, handleSubmit, formState } = useForm({
+    resolver: yupResolver(schema),
+  });
+  const { errors } = formState;
   const onSubmit = async (data) => {
     if (isSubmitting) {
       return;
@@ -21,8 +31,8 @@ const AddSchool = () => {
         body: JSON.stringify({ data }),
       };
       const res = await fetch(urlpost, postData);
-      const response= await res.json();
-      console.log(response)
+      const response = await res.json();
+      // console.log(response);
     } catch (error) {
       console.error("Error creating new data:", error.message);
     }
@@ -102,7 +112,9 @@ const AddSchool = () => {
             type="text"
             placeholder=" "
           />
-
+          {errors.email && (
+            <span className={styles.error}>{errors.email.message}</span>
+          )}
           <label htmlFor="email" className={styles.placeholder}>
             Email
           </label>
